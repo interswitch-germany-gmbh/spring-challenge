@@ -12,7 +12,6 @@ Zugangsdaten für die API werden geteilt.
 
 Restriktionen der SMS API:
 Absender muss immer "TEST" sein
-Der maximale Durchsatz ist auf1 SMS pro Sekunde begrenzt
-Es werden nur eine begrenzte Anzahl von SMS freigeschaltet - zum testen von Durchsatz bitte nur User mit id 3 nutzen.
+Der maximale Durchsatz ist auf SMS pro Sekunde begrenzt.
 
 Um dein Ergebnis zu teilen, erstelle bitte einen Commit auf dem Branch den wir die zusammen mit den SMS API Zugangsdaten mitteilen.
