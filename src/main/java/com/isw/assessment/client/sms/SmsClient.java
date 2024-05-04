@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Component
-@FeignClient(name = "${client.sms.name}", url = "${client.sms.url}", configuration = SmsClientConfiguration.class)
+@FeignClient(name = "${service.sms.name}", url = "${service.sms.url}", configuration = SmsClientConfiguration.class)
 public interface SmsClient {
 
     @GetMapping(path = "/submit", produces = MediaType.APPLICATION_JSON_VALUE)
