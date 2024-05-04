@@ -11,22 +11,8 @@ import java.nio.charset.StandardCharsets;
 
 public class SmsClientFeignErrorDecoder implements ErrorDecoder {
 
-
-    private static String readResponseBody(Response response) {
-        StringBuilder stringBuilder = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(response.body().asReader(StandardCharsets.UTF_8))) {
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                stringBuilder.append(line).append("\n");
-            }
-        } catch (IOException e) {
-            return "";
-        }
-        return stringBuilder.toString();
-    }
-
     @Override
-    public Exception decode(String s, Response response) {
+    public Exception decode(String methodKey, Response response) {
 
         String responseBody = readResponseBody(response);
         return switch (response.status()) {
@@ -39,5 +25,18 @@ public class SmsClientFeignErrorDecoder implements ErrorDecoder {
             default -> new RuntimeException(responseBody);
         };
 
+    }
+
+    private static String readResponseBody(Response response) {
+        StringBuilder stringBuilder = new StringBuilder();
+        try (BufferedReader bufferedReader = new BufferedReader(response.body().asReader(StandardCharsets.UTF_8))) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            return "";
+        }
+        return stringBuilder.toString();
     }
 }
