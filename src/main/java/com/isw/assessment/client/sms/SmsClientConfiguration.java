@@ -14,7 +14,7 @@ public class SmsClientConfiguration {
     }
 
     @Bean
-    public BasicAuthRequestInterceptor basicAuthRequestInterceptorBookService(
+    public BasicAuthRequestInterceptor basicAuthRequestInterceptor(
             @Value("${service.sms.username}") String username,
             @Value("${service.sms.password}") String password) {
         return new BasicAuthRequestInterceptor(username, password);
