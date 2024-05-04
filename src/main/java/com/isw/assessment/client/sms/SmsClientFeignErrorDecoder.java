@@ -13,12 +13,15 @@ import java.nio.charset.StandardCharsets;
 
 public class SmsClientFeignErrorDecoder implements ErrorDecoder {
 
+    private final static String SMS_API_CALL_ERROR_MESSAGE = "Call of the Sms Api failed";
+
     @Override
     public Exception decode(String methodKey, Response response) {
+        String errorResponse = SMS_API_CALL_ERROR_MESSAGE;
         String responseBody = readResponseBody(response);
-        responseBody= responseBody.isBlank() ? null : responseBody;
+        errorResponse += responseBody.isBlank() ? null : ", responseBody: " + responseBody;
 
-        return new ResponseStatusException(HttpStatus.valueOf(response.status()), responseBody);
+        return new ResponseStatusException(HttpStatus.valueOf(response.status()), errorResponse);
     }
 
     private static String readResponseBody(Response response) {
