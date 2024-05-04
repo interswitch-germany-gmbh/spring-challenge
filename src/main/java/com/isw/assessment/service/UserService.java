@@ -39,10 +39,19 @@ public class UserService {
     }
 
     public SmsStatus sendSms(String email, String smsText) {
-        String phoneNumber = getUserByEmail(email).getPhone();
-        phoneNumber = phoneNumber.startsWith("+") ? phoneNumber.substring(1) : phoneNumber;
+        UserEntity user = getUserByEmail(email);
+        String phoneNumber = getUserPhoneNumber(user);
 
         return smsClient.sendSms(phoneNumber, "TEST", smsText);
+    }
+
+    private static String getUserPhoneNumber(UserEntity user) {
+        String phoneNumber = user.getPhone();
+        if(phoneNumber==null || phoneNumber.isBlank())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID %d has no saved phone number".
+                    formatted(user.getId()));
+
+        return phoneNumber.startsWith("+") ? phoneNumber.substring(1) : phoneNumber;
     }
 
 }
