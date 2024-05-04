@@ -19,7 +19,7 @@ public class SmsClientFeignErrorDecoder implements ErrorDecoder {
     public Exception decode(String methodKey, Response response) {
         String errorResponse = SMS_API_CALL_ERROR_MESSAGE;
         String responseBody = readResponseBody(response);
-        errorResponse += responseBody.isBlank() ? null : ", responseBody: " + responseBody;
+        errorResponse += responseBody.isBlank() ? "" : ", responseBody: " + responseBody;
 
         return new ResponseStatusException(HttpStatus.valueOf(response.status()), errorResponse);
     }
