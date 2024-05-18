@@ -28,8 +28,8 @@ public class RequestRateLimiter {
 
         }
         finally {
-            lock.unlock();
             lastRequestTime.set(System.nanoTime());
-        };
+            lock.unlock();
+         };
     }
 }
