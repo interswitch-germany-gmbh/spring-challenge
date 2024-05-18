@@ -21,9 +21,8 @@ public class RequestRateLimiter {
             lock.lock();
             long duration = System.nanoTime() - lastRequestTime.get();
             long remainingTimeInNanoSeconds = duration > timeIntervalInNanos ? 0 : timeIntervalInNanos - duration;
-            long remainingTimeInSeconds = (long) (remainingTimeInNanoSeconds/1_000_000.0);
 
-            Thread.sleep(remainingTimeInSeconds);
+            Thread.sleep(TimeUnit.NANOSECONDS.toMillis(remainingTimeInNanoSeconds));
         } catch (InterruptedException ignored) {
 
         }
