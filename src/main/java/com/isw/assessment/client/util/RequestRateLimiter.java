@@ -15,7 +15,7 @@ public class RequestRateLimiter {
         this.timeIntervalInNanos = TimeUnit.MILLISECONDS.toNanos(timeIntervalInMilliSeconds);
     }
 
-    public void waitForSpecificTimeBetweenRequests(){
+    public void waitBetweenRequests(){
 
         try {
             lock.lock();

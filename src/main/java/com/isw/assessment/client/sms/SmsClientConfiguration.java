@@ -32,7 +32,7 @@ public class SmsClientConfiguration   {
     public RequestInterceptor rateLimitingInterceptor(
             @Value("${service.sms.timeIntervalBetweenRequestsInMilliSeconds}") int timeIntervalInMilliSeconds) {
         RequestRateLimiter smsRequestRateLimiter = new RequestRateLimiter(timeIntervalInMilliSeconds);
-        return requestTemplate -> smsRequestRateLimiter.waitForSpecificTimeBetweenRequests();
+        return requestTemplate -> smsRequestRateLimiter.waitBetweenRequests();
     }
 
 }
