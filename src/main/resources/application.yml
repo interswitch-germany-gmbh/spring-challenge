@@ -2,6 +2,13 @@ server:
   port: ${PORT:8088}
   error:
       include-message: always
+
+logging:
+  level:
+    org:
+      springframework:
+        web=: DEBUG
+
 spring:
   application:
     name: spring-challenge   
@@ -24,3 +31,5 @@ service:
     url: https://sms.vanso.com/rest/sms
     username: test-challenge
     password: HwR7F1Oe
+    timeIntervalBetweenRequestsInMilliSeconds: 1_100
+
